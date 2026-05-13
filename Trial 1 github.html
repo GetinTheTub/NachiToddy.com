@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nachi Toddy — Traditional Palm Toddy, Malacca</title>
+    <meta name="description" content="Nachi Toddy — Authentic traditional palm toddy crafted the old way in the heart of Malacca City. Visit us for fresh coconut toddy, palmyra toddy, and traditional Malaysian flavours.">
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Critical styles for faster initial render */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-base: #100c06;
+            --bg-surface: #1c150c;
+            --bg-card: #241a0f;
+            --amber: #c8922a;
+            --amber-light: #e8b04a;
+            --amber-dim: #7a5618;
+            --cream: #f0ddb8;
+            --cream-dim: #b89a6a;
+            --muted: #6b5540;
+            --border: #c8922a2e;
+            --border-strong: #c8922a61;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--cream-dim);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Grain Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* Navigation Links */
+        .nav-link {
+            color: var(--cream-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: var(--amber);
+        }
+
+        /* Buttons */
+        .amber-btn, .ghost-btn {
+            display: inline-block;
+            padding: 0.85rem 1.8rem;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        .amber-btn {
+            background: var(--amber);
+            color: var(--bg-base);
+            border: 1px solid var(--amber);
+            font-weight: 600;
+        }
+        .amber-btn:hover {
+            background: var(--amber-light);
+            border-color: var(--amber-light);
+        }
+        .ghost-btn {
+            border: 1px solid var(--border-strong);
+            color: var(--cream);
+        }
+        .ghost-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        /* Section Label */
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            font-weight: 500;
+        }
+
+        /* Amber Rule Divider */
+        .amber-rule {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Divider */
+        .divider-amber {
+            width: 3rem;
+            height: 2px;
+            background: var(--amber);
+        }
+
+        /* Hero Title */
+        .hero-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 1;
+            color: var(--cream);
+            font-weight: 600;
+        }
+        .hero-title span {
+            color: var(--amber);
+            font-style: italic;
+        }
+
+        /* Fade Up Animations */
+        .fade-up, .fade-up-1, .fade-up-2, .fade-up-3, .fade-up-4, .fade-up-5 {
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+        }
+        .fade-up-1 { animation-delay: 0.05s; }
+        .fade-up-2 { animation-delay: 0.15s; }
+        .fade-up-3 { animation-delay: 0.3s; }
+        .fade-up-4 { animation-delay: 0.45s; }
+        .fade-up-5 { animation-delay: 0.6s; }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (hover: hover) {
+            .card-hover {
+                transition: transform 0.2s ease, border-color 0.2s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-3px);
+                border-color: var(--border-strong);
+            }
+        }
+
+        /* Social Icons */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--cream-dim);
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+        .social-icon:hover {
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--amber-dim);
+            border-radius: 2px;
+        }
+        
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .menu-card-large { grid-column: span 2; }
+        }
+        
+        @media (min-width: 1024px) {
+            .menu-grid { grid-template-columns: repeat(4, 1fr); }
+            .menu-card-large { grid-column: span 2; }
+            .menu-card-third { grid-column: span 1; }
+        }
+        
+        #about {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        @media (min-width: 768px) {
+            #about { grid-template-columns: 1fr 1fr; gap: 4rem; }
+        }
+        @media (min-width: 1024px) {
+            #about { gap: 6rem; }
+        }
+        
+        #hours > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            #hours > div { grid-template-columns: 1fr 1.4fr; gap: 3rem; }
+        }
+        @media (min-width: 1024px) {
+            #hours > div { gap: 5rem; }
+        }
+        
+        #contact > div > div {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            #contact > div > div { grid-template-columns: 1fr 1fr; gap: 3rem; }
+        }
+        @media (min-width: 1024px) {
+            #contact > div > div { gap: 4rem; }
+        }
+        
+        nav {
+            padding: 0.75rem 1.25rem !important;
+        }
+        nav > div { gap: 1.25rem !important; }
+        nav .nav-link { font-size: 0.7rem !important; }
+        @media (min-width: 640px) {
+            nav { padding: 1rem 2rem !important; }
+            nav > div { gap: 2rem !important; }
+            nav .nav-link { font-size: 0.8rem !important; }
+        }
+        @media (min-width: 1024px) {
+            nav { padding: 1.25rem 3rem !important; }
+            nav > div { gap: 2.5rem !important; }
+        }
+        
+        section {
+            padding: 4rem 1.25rem !important;
+        }
+        @media (min-width: 640px) {
+            section { padding: 5rem 2rem !important; }
+        }
+        @media (min-width: 1024px) {
+            section { padding: 7rem 3rem !important; }
+        }
+        
+        .hero-section {
+            padding: 0 1.25rem 4rem !important;
+        }
+        @media (min-width: 640px) {
+            .hero-section { padding: 0 2rem 5rem !important; }
+        }
+        @media (min-width: 1024px) {
+            .hero-section { padding: 0 3rem 5rem !important; }
+        }
+        
+        .menu-card-large { padding: 1.5rem !important; }
+        .menu-card-small, .menu-card-third { padding: 1.5rem !important; }
+        @media (min-width: 640px) {
+            .menu-card-large { padding: 2rem !important; }
+            .menu-card-small, .menu-card-third { padding: 1.75rem !important; }
+        }
+        @media (min-width: 1024px) {
+            .menu-card-large { padding: 3rem !important; }
+            .menu-card-small, .menu-card-third { padding: 2rem !important; }
+        }
+        
+        .amber-btn, .ghost-btn, .social-icon, .nav-link, a[href^="#"] {
+            touch-action: manipulation;
+        }
+        
+        .hours-table { overflow-x: auto; }
+        .hours-table-inner { min-width: 500px; }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 280px;
+        }
+        @media (min-width: 640px) {
+            .map-container iframe { height: 320px; }
+        }
+        @media (min-width: 1024px) {
+            .map-container iframe { height: 360px; }
+        }
+        
+        footer {
+            padding: 2rem 1.5rem !important;
+        }
+        @media (min-width: 640px) {
+            footer { padding: 2.5rem 2rem !important; }
+        }
+        @media (min-width: 1024px) {
+            footer { padding: 3rem !important; }
+        }
+        
+        body { font-size: 15px; }
+        @media (min-width: 640px) { body { font-size: 16px; } }
+        
+        img, iframe { content-visibility: auto; }
+        
+        html { scroll-padding-top: 70px; }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-btn:hover {
+            background: var(--amber) !important;
+            border-color: var(--amber) !important;
+            color: var(--bg-base) !important;
+        }
+
+        .dot.active-dot {
+            background: var(--amber) !important;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<div class="grain-overlay" aria-hidden="true"></div>
+<div style="background-color:var(--bg-base);min-height:100vh">
+    <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom, rgba(16,12,6,0.96) 0%, transparent 100%);backdrop-filter:blur(2px)">
+        <span style="font-family:'Cormorant Garamond', Georgia, serif;font-size:clamp(1rem, 4vw, 1.15rem);font-weight:600;letter-spacing:0.08em;color:var(--amber)">NACHI TODDY</span>
+        <div style="display:flex;align-items:center">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#menu" class="nav-link">Menu</a>
+            <a href="#hours" class="nav-link">Hours</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 40%, rgba(200,146,42,0.07) 0%, transparent 65%), radial-gradient(ellipse 50% 80% at 20% 80%, rgba(139,69,19,0.05) 0%, transparent 60%);pointer-events:none"></div>
+        <div style="position:absolute;top:12%;right:8%;width:280px;height:280px;border-radius:50%;border:1px solid rgba(200,146,42,0.1);pointer-events:none"></div>
+        <div style="position:relative;max-width:1200px;z-index:1">
+            <p class="section-label fade-up fade-up-1" style="margin-bottom:1rem">Est. Malacca City · Traditional Palm Toddy</p>
+            <h1 class="hero-title fade-up fade-up-2">NACHI<br><span>TODDY</span></h1>
+            <p class="fade-up fade-up-3" style="margin-top:1.5rem;max-width:38ch;font-size:clamp(0.95rem, 4vw, 1.05rem);color:var(--cream-dim);line-height:1.6;font-weight:300">Where the old ways of palm tapping live on. Fresh coconut toddy, served the way your grandparents remember it.</p>
+            <div class="fade-up fade-up-4" style="display:flex;gap:0.75rem;margin-top:2rem;flex-wrap:wrap">
+                <a href="#menu" class="amber-btn">Explore the Menu</a>
+                <a href="#contact" class="ghost-btn">Find Us</a>
+            </div>
+        </div>
+        <div class="fade-up fade-up-5" style="position:absolute;bottom:1.5rem;right:2.5rem;display:flex;flex-direction:column;align-items:center;gap:0.5rem">
+            <span style="font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase">Scroll</span>
+            <div style="width:1px;height:30px;background:linear-gradient(to bottom, var(--amber-dim), transparent)"></div>
+        </div>
+    </section>
+
+    <div class="amber-rule"></div>
+
+    <!-- About Section with Slideshow -->
+    <section id="about" style="max-width:1200px;margin:0 auto">
+        <div>
+            <p class="section-label" style="margin-bottom:1rem">Our Story</p>
+            <h2 style="font-size:clamp(2rem, 6vw, 4rem);line-height:1.1;margin-bottom:1.5rem;color:var(--cream)">Crafted the<br><em style="color:var(--amber);font-style:italic">Old Way</em></h2>
+            <div class="divider-amber" style="margin-bottom:1.5rem"></div>
+            <p style="color:var(--cream-dim);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Nachi Toddy has been a gathering place for the people of Malacca — a spot where neighbours linger over fresh-tapped palm toddy and the morning light stretches long through the trees.</p>
+            <p style="color:var(--cream-dim);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Every glass is drawn from palms tapped before sunrise, bringing you a drink that is alive — slightly sweet, gently fermented, utterly fresh. We take no shortcuts, add no flavourings, and rush nothing.</p>
+            <p style="color:var(--cream-dim);line-height:1.75;font-size:0.95rem">This is toddy as it was meant to be: honest, unhurried, and shared among friends.</p>
+        </div>
+        
+        <!-- Slideshow Card -->
+        <div style="position:relative">
+    <div style="aspect-ratio:3/4;background:var(--bg-card);border:1px solid var(--border);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;position:relative;overflow:hidden">
+        
+        <!-- Slideshow Images Container - LOCAL FILES (4 images) -->
+        <div class="slideshow-container" id="aboutSlideshow">
+            <div class="slide active" style="background-image: url('images/slide-1.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="slide" style="background-image: url('images/slide-2.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="slide" style="background-image: url('images/slide-3.jpg'); background-size: cover; background-position: center;"></div>
+            <div class="slide" style="background-image: url('images/slide-4.jpg'); background-size: cover; background-position: center;"></div>
+        </div>
+        
+        <!-- Dark Overlay for text readability -->
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);pointer-events:none;z-index:1;"></div>
+        
+        <!-- Navigation Buttons -->
+        <button class="slide-btn slide-btn-prev" onclick="changeSlide(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);z-index:3;background:rgba(0,0,0,0.5);color:white;border:1px solid var(--amber);border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;pointer-events:auto;">❮</button>
+        
+        <button class="slide-btn slide-btn-next" onclick="changeSlide(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);z-index:3;background:rgba(0,0,0,0.5);color:white;border:1px solid var(--amber);border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;pointer-events:auto;">❯</button>
+        
+        <!-- Dot Indicators (4 dots for 4 slides) -->
+        <div style="position:absolute;bottom:15px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px;pointer-events:auto;">
+            <span class="dot" onclick="currentSlide(0)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;"></span>
+            <span class="dot" onclick="currentSlide(1)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;"></span>
+            <span class="dot" onclick="currentSlide(2)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;"></span>
+            <span class="dot" onclick="currentSlide(3)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;"></span>
+        </div>
+        
+        <!-- Quote Text -->
+        <div style="position:relative;z-index:2">
+            <div class="divider-amber" style="margin-bottom:1rem;width:2rem"></div>
+            <blockquote style="font-family:'Cormorant Garamond', Georgia, serif;font-size:clamp(1.2rem, 4vw, 1.45rem);font-weight:400;font-style:italic;color:var(--cream);line-height:1.4;margin-bottom:0.75rem">"Tapped at dawn, shared by noon — that is the rhythm of toddy."</blockquote>
+            <cite style="font-size:0.7rem;letter-spacing:0.15em;color:var(--amber);text-transform:uppercase;font-style:normal">— Nachi, Founder</cite>
+        </div>
+    </div>
+</div>
+    <div style="position:absolute;top:1rem;left:1rem;right:-1rem;bottom:-1rem;border:1px solid var(--border);z-index:-1"></div>
+</div>
+            <div style="position:absolute;top:1rem;left:1rem;right:-1rem;bottom:-1rem;border:1px solid var(--border);z-index:-1"></div>
+        </div>
+    </section>
+
+    <div class="amber-rule"></div>
+
+    <!-- Menu Section -->
+    <section id="menu" style="position:relative">
+        <div style="max-width:1200px;margin:0 auto">
+            <div style="margin-bottom:3rem">
+                <p class="section-label" style="margin-bottom:0.75rem">What We Serve</p>
+                <h2 style="font-size:clamp(2rem, 6vw, 4rem);color:var(--cream);max-width:14ch;line-height:1.1">The Nachi Menu</h2>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card-large card-hover" style="background:var(--bg-card);border:1px solid var(--border-strong);position:relative;overflow:hidden">
+                    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right, var(--amber), transparent)"></div>
+                    <span class="section-label" style="margin-bottom:0.5rem;display:block;color:var(--amber)">Signature</span>
+                    <h3 style="font-size:clamp(1.5rem, 5vw, 2rem);color:var(--cream);margin-bottom:0.3rem;line-height:1.2">Fresh Coconut Toddy</h3>
+                    <p style="font-size:0.75rem;color:var(--amber-dim);letter-spacing:0.05em;margin-bottom:1rem;font-style:italic;font-family:'Cormorant Garamond', serif">Arak Kelapa Segar</p>
+                    <p style="color:var(--cream-dim);line-height:1.7;font-size:0.9rem">Tapped at dawn from mature coconut palms, lightly fermented to a clean effervescent freshness. Served cool in traditional clay cups.</p>
+                    <div style="margin-top:1.25rem;display:inline-block;padding:0.25rem 0.75rem;border:1px solid var(--border);font-size:0.65rem;letter-spacing:0.12em;color:var(--amber);text-transform:uppercase">Mild · Refreshing</div>
+                </div>
+                <div class="menu-card-small card-hover" style="background:var(--bg-surface);border:1px solid var(--border);position:relative">
+                    <span class="section-label" style="margin-bottom:0.5rem;display:block">Classic</span>
+                    <h3 style="font-size:clamp(1.3rem, 4vw, 1.65rem);color:var(--cream);margin-bottom:0.3rem;line-height:1.2">Palmyra Toddy</h3>
+                    <p style="font-size:0.75rem;color:var(--amber-dim);letter-spacing:0.05em;margin-bottom:0.75rem;font-style:italic;font-family:'Cormorant Garamond', serif">Arak Lontar</p>
+                    <p style="color:var(--cream-dim);line-height:1.7;font-size:0.88rem">Drawn from the tall palmyra palms, this toddy carries a deeper, earthier body with a subtle sweetness that regulars have loved for decades.</p>
+                    <div style="margin-top:1rem;display:inline-block;padding:0.25rem 0.75rem;border:1px solid var(--border);font-size:0.65rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase">Medium · Earthy</div>
+                </div>
+                <div class="menu-card-third card-hover" style="background:var(--bg-surface);border:1px solid var(--border)">
+                    <span class="section-label" style="margin-bottom:0.5rem;display:block;font-size:0.6rem">Spiced</span>
+                    <h3 style="font-size:clamp(1.2rem, 4vw, 1.35rem);color:var(--cream);margin-bottom:0.3rem;line-height:1.3">Rempah Toddy</h3>
+                    <p style="font-size:0.7rem;color:var(--amber-dim);letter-spacing:0.04em;margin-bottom:0.75rem;font-style:italic;font-family:'Cormorant Garamond', serif">Arak Rempah</p>
+                    <p style="color:var(--cream-dim);line-height:1.65;font-size:0.85rem">House-blended with a secret mix of dried spices — clove, cardamom and star anise — warming and aromatic.</p>
+                    <div style="margin-top:0.75rem;display:inline-block;padding:0.2rem 0.6rem;border:1px solid var(--border);font-size:0.6rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase">Bold · Aromatic</div>
+                </div>
+                <div class="menu-card-third card-hover" style="background:var(--bg-surface);border:1px solid var(--border)">
+                    <span class="section-label" style="margin-bottom:0.5rem;display:block;font-size:0.6rem">Pairing</span>
+                    <h3 style="font-size:clamp(1.2rem, 4vw, 1.35rem);color:var(--cream);margin-bottom:0.3rem;line-height:1.3">Murukku & Sambal</h3>
+                    <p style="font-size:0.7rem;color:var(--amber-dim);letter-spacing:0.04em;margin-bottom:0.75rem;font-style:italic;font-family:'Cormorant Garamond', serif">Pencuci Mulut</p>
+                    <p style="color:var(--cream-dim);line-height:1.65;font-size:0.85rem">Crispy murukku served with house-made sambal belacan. The perfect companion to a fresh glass of coconut toddy.</p>
+                    <div style="margin-top:0.75rem;display:inline-block;padding:0.2rem 0.6rem;border:1px solid var(--border);font-size:0.6rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase">Snack · Traditional</div>
+                </div>
+                <div class="menu-card-third card-hover" style="background:var(--bg-surface);border:1px solid var(--border)">
+                    <span class="section-label" style="margin-bottom:0.5rem;display:block;font-size:0.6rem">Pairing</span>
+                    <h3 style="font-size:clamp(1.2rem, 4vw, 1.35rem);color:var(--cream);margin-bottom:0.3rem;line-height:1.3">Pisang Goreng</h3>
+                    <p style="font-size:0.7rem;color:var(--amber-dim);letter-spacing:0.04em;margin-bottom:0.75rem;font-style:italic;font-family:'Cormorant Garamond', serif">Banana Fritters</p>
+                    <p style="color:var(--cream-dim);line-height:1.65;font-size:0.85rem">Golden battered banana fritters made from locally sourced pisang raja. Hot from the pan, dusted with fine sugar.</p>
+                    <div style="margin-top:0.75rem;display:inline-block;padding:0.2rem 0.6rem;border:1px solid var(--border);font-size:0.6rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase">Snack · Sweet</div>
+                </div>
+                <div class="menu-card-third card-hover" style="background:var(--bg-surface);border:1px solid var(--border)">
+                    <span class="section-label" style="margin-bottom:0.5rem;display:block;font-size:0.6rem">Sweet</span>
+                    <h3 style="font-size:clamp(1.2rem, 4vw, 1.35rem);color:var(--cream);margin-bottom:0.3rem;line-height:1.3">Nira Soda</h3>
+                    <p style="font-size:0.7rem;color:var(--amber-dim);letter-spacing:0.04em;margin-bottom:0.75rem;font-style:italic;font-family:'Cormorant Garamond', serif">Minuman Segar</p>
+                    <p style="color:var(--cream-dim);line-height:1.65;font-size:0.85rem">Fresh palm flower nectar topped with sparkling water and a squeeze of lime. Naturally sweet.</p>
+                    <div style="margin-top:0.75rem;display:inline-block;padding:0.2rem 0.6rem;border:1px solid var(--border);font-size:0.6rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase">Non-Alcoholic</div>
+                </div>
+            </div>
+            <p style="margin-top:2rem;color:var(--muted);font-size:0.75rem;letter-spacing:0.04em;text-align:center">* Menu availability varies daily. Arrive early for the freshest pour.</p>
+        </div>
+    </section>
+
+    <div class="amber-rule"></div>
+
+    <!-- Hours Section -->
+    <section id="hours" style="background:var(--bg-surface);position:relative;overflow:hidden">
+        <div style="position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:300px;height:300px;border-radius:50%;border:1px solid rgba(200,146,42,0.06);pointer-events:none"></div>
+        <div style="max-width:1200px;margin:0 auto">
+            <div>
+                <p class="section-label" style="margin-bottom:1rem">When to Visit</p>
+                <h2 style="font-size:clamp(2rem, 6vw, 3.5rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem">Opening<br>Hours</h2>
+                <div class="divider-amber" style="margin-bottom:1.2rem"></div>
+                <p style="color:var(--cream-dim);line-height:1.7;font-size:0.9rem;margin-bottom:1.5rem">Toddy is at its best in the morning when the harvest is freshest. Our evening sessions offer a relaxed atmosphere.</p>
+            </div>
+            <div class="hours-table">
+                <div class="hours-table-inner" style="border:1px solid var(--border);padding:1.25rem;overflow-x:auto">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;margin-bottom:0.5rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)">
+                        <span style="font-size:0.65rem;letter-spacing:0.15em;color:var(--amber);font-weight:500">Day</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.15em;color:var(--amber);font-weight:500">Morning</span>
+                        <span style="font-size:0.65rem;letter-spacing:0.15em;color:var(--amber);font-weight:500">Evening</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0;border-bottom:1px solid var(--border)"><span style="font-size:0.85rem;color:var(--cream)">Monday</span><span style="font-size:0.8rem;color:var(--cream-dim)">7:00 AM – 12:00 PM</span><span style="font-size:0.8rem;color:var(--cream-dim)">5:00 PM – 9:00 PM</span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0;border-bottom:1px solid var(--border);background:rgba(200,146,42,0.02)"><span style="font-size:0.85rem;color:var(--cream)">Tuesday</span><span style="font-size:0.8rem;color:var(--cream-dim)">7:00 AM – 12:00 PM</span><span style="font-size:0.8rem;color:var(--cream-dim)">5:00 PM – 9:00 PM</span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0;border-bottom:1px solid var(--border)"><span style="font-size:0.85rem;color:var(--cream)">Wednesday</span><span style="font-size:0.8rem;color:var(--cream-dim)">7:00 AM – 12:00 PM</span><span style="font-size:0.8rem;color:var(--cream-dim)">5:00 PM – 9:00 PM</span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0;border-bottom:1px solid var(--border);background:rgba(200,146,42,0.02)"><span style="font-size:0.85rem;color:var(--cream)">Thursday</span><span style="font-size:0.8rem;color:var(--cream-dim)">7:00 AM – 12:00 PM</span><span style="font-size:0.8rem;color:var(--cream-dim)">5:00 PM – 9:00 PM</span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0;border-bottom:1px solid var(--border)"><span style="font-size:0.85rem;color:var(--cream)">Friday</span><span style="font-size:0.8rem;color:var(--cream-dim)">7:00 AM – 12:00 PM</span><span style="font-size:0.8rem;color:var(--cream-dim)">5:00 PM – 10:00 PM</span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0;border-bottom:1px solid var(--border);background:rgba(200,146,42,0.02)"><span style="font-size:0.85rem;color:var(--cream)">Saturday</span><span style="font-size:0.8rem;color:var(--cream-dim)">6:30 AM – 1:00 PM</span><span style="font-size:0.8rem;color:var(--cream-dim)">4:30 PM – 10:00 PM</span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;padding:0.6rem 0"><span style="font-size:0.85rem;color:var(--cream)">Sunday</span><span style="font-size:0.8rem;color:var(--cream-dim)">6:30 AM – 1:00 PM</span><span style="font-size:0.8rem;color:var(--muted)">Closed</span></div>
+                </div>
+            </div>
+            <p style="margin-top:0.75rem;font-size:0.7rem;color:var(--muted);letter-spacing:0.04em">Hours may vary on public holidays. Follow us on social media for updates.</p>
+        </div>
+    </section>
+
+    <div class="amber-rule"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" style="position:relative">
+        <div style="position:absolute;left:-8%;top:30%;width:300px;height:300px;border-radius:50%;border:1px solid rgba(200,146,42,0.05);pointer-events:none"></div>
+        <div style="max-width:1200px;margin:0 auto">
+            <div style="margin-bottom:3rem">
+                <p class="section-label" style="margin-bottom:0.75rem">Get in Touch</p>
+                <h2 style="font-size:clamp(2rem, 6vw, 4rem);color:var(--cream);line-height:1.1">Find Us in<br><em style="color:var(--amber);font-style:italic">Malacca</em></h2>
+            </div>
+            <div>
+                <!-- Left Column: Contact Info -->
+                <div>
+                    <div style="display:flex;flex-direction:column;gap:1.5rem">
+                        <div style="display:flex;gap:1rem;align-items:flex-start">
+                            <div style="color:var(--amber);margin-top:0.1rem;flex-shrink:0;font-size:1.2rem">📍</div>
+                            <div>
+                                <p class="section-label" style="margin-bottom:0.4rem;font-size:0.6rem">Address</p>
+                                <p style="color:var(--cream);font-size:0.92rem;line-height:1.5">Malacca City, Melaka<br>Malaysia</p>
+                                <a href="https://maps.google.com/?q=Nachi+Toddy+Malacca" target="_blank" rel="noopener noreferrer" style="font-size:0.75rem;color:var(--amber);letter-spacing:0.08em;text-decoration:none;margin-top:0.4rem;display:inline-block">View on Maps →</a>
+                            </div>
+                        </div>
+                        
+                        <div style="display:flex;gap:1rem;align-items:flex-start">
+                            <div style="color:var(--amber);margin-top:0.1rem;flex-shrink:0;font-size:1.2rem">📞</div>
+                            <div>
+                                <p class="section-label" style="margin-bottom:0.4rem;font-size:0.6rem">Phone</p>
+                                <p style="color:var(--cream);font-size:0.92rem">Contact via social media</p>
+                                <p style="color:var(--cream-dim);font-size:0.78rem;margin-top:0.2rem">or send us a DM on Instagram</p>
+                            </div>
+                        </div>
+                        
+                        <!-- WhatsApp Button -->
+                        <div style="margin-left:2rem">
+                            <a href="https://wa.me/60109479441?text=Hi%20Nachi%20Toddy%2C%20I%20found%20you%20online%20and%20would%20love%20to%20visit." 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="amber-btn" 
+                               style="background:#c8922a;border-color:#d37925;display:inline-flex;align-items:center;gap:0.5rem;">
+                                💬 Message us on WhatsApp
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <p class="section-label" style="margin-bottom:0.8rem;font-size:0.6rem">Follow Us</p>
+                            <div style="display:flex;gap:0.75rem">
+                                <a href="https://www.instagram.com/nachitoddy/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Follow on Instagram">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <a href="https://www.facebook.com/nachitoddy/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Follow on Facebook">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <p style="margin-top:0.8rem;color:var(--muted);font-size:0.75rem;line-height:1.5">Stay updated on daily menu, special events, and harvest announcements.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Google Map -->
+                <div class="map-container" style="background:var(--bg-card);border:1px solid var(--border);overflow:hidden;">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.9221776500326!2d102.2660258!3d2.1832191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1ef3bee831243%3A0x6b50eae1fddf731c!2sNachi%20Toddy!5e0!3m2!1sen!2smy!4v1777351283128!5m2!1sen!2smy" 
+                        width="100%" 
+                        height="280" 
+                        style="border:0; display:block;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="amber-rule"></div>
+
+    <footer>
+        <span style="font-family:'Cormorant Garamond', Georgia, serif;font-size:clamp(1.2rem, 5vw, 1.4rem);font-weight:500;letter-spacing:0.1em;color:var(--amber)">NACHI TODDY</span>
+        <p style="color:var(--muted);font-size:0.7rem;letter-spacing:0.1em;text-align:center">Traditional Palm Toddy · Malacca City, Malaysia</p>
+        <div style="display:flex;gap:0.6rem">
+            <a href="https://www.instagram.com/nachitoddy/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Follow on Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/nachitoddy/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Follow on Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+            </a>
+        </div>
+        <p style="color:var(--muted);font-size:0.65rem;letter-spacing:0.06em;margin-top:1rem">© 2026 Nachi Toddy. All rights reserved.</p>
+    </footer>
+</div>
+
+<!-- JAVASCRIPT FOR SLIDESHOW -->
+<script>
+    // Slideshow functionality for About section
+    let currentImageIndex = 0;
+    const slides = document.querySelectorAll('#aboutSlideshow .slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    function showSlide(index) {
+        // Wrap around if index is out of bounds
+        if (index >= slides.length) currentImageIndex = 0;
+        if (index < 0) currentImageIndex = slides.length - 1;
+        if (index >= 0 && index < slides.length) currentImageIndex = index;
+        
+        // Hide all slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Show current slide
+        if (slides[currentImageIndex]) {
+            slides[currentImageIndex].classList.add('active');
+        }
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            if (i === currentImageIndex) {
+                dot.classList.add('active-dot');
+            } else {
+                dot.classList.remove('active-dot');
+            }
+        });
+    }
+    
+    function changeSlide(direction) {
+        showSlide(currentImageIndex + direction);
+        // Reset auto-slide timer
+        resetAutoSlide();
+    }
+    
+    function currentSlide(index) {
+        showSlide(index);
+        // Reset auto-slide timer
+        resetAutoSlide();
+    }
+    
+    // Auto-slide every 5 seconds
+    let autoSlideInterval = setInterval(() => {
+        changeSlide(1);
+    }, 5000);
+    
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    }
+    
+    // Pause auto-slide when hovering over the container
+    const slideshowContainer = document.querySelector('#aboutSlideshow');
+    if (slideshowContainer) {
+        const parentCard = slideshowContainer.parentElement;
+        if (parentCard) {
+            parentCard.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            parentCard.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    changeSlide(1);
+                }, 5000);
+            });
+        }
+    }
+    
+    // Initialize first dot as active
+    if (dots.length > 0) {
+        dots[0].classList.add('active-dot');
+    }
+</script>
+
+</body>
+</html>
