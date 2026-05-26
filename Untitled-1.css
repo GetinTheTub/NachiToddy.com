@@ -668,10 +668,17 @@ nav > div { display: flex; align-items: center; gap: 0.8rem; }
 #about {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;          /* centers the whole section */
+    padding: 0 1rem;
 }
 @media (min-width: 768px) { #about { grid-template-columns: 1fr 1fr; gap: 3rem; } }
 @media (min-width: 1024px) { #about { gap: 4rem; } }
+
+#about div:first-child {
+    text-align: left;   /* keep left-aligned for readability */
+}
 
 #hours > .content-shell, #contact > .content-shell {
     display: grid;
