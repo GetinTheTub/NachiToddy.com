@@ -70,15 +70,66 @@ nav {
     backdrop-filter: blur(2px);
     padding: 0.6rem 1rem;
 }
-nav > div { display: flex; align-items: center; gap: 0.8rem; }
+/* Hamburger button — visible on mobile only */
+.nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 51;
+}
+.nav-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--amber);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
+/* Mobile nav links — hidden until hamburger is clicked */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(16, 12, 6, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 1rem 1.5rem 1.5rem;
+    gap: 1.2rem;
+    border-bottom: 1px solid var(--border);
+}
+.nav-links.open { display: flex; }
+
+/* Desktop — revert to horizontal inline layout */
 @media (min-width: 640px) {
     nav { padding: 0.8rem 1.5rem; }
-    nav > div { gap: 1.5rem; }
+    .nav-hamburger { display: none; }
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: static;
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0;
+        border: none;
+        gap: 1.5rem;
+    }
 }
 @media (min-width: 1024px) {
     nav { padding: 1rem 2rem; }
-    nav > div { gap: 2rem; }
+    .nav-links { gap: 2rem; }
 }
 
 .nav-brand {
@@ -828,3 +879,4 @@ button { border: none; }
         font-size: 1.2rem;
     }
 }
+
